@@ -27,7 +27,7 @@ You can also run the Mkdocs project easily using Wasmer (check out the [install 
 
 ```bash
 mkdocs build
-wasmer run . --net -- --port 8000
+wasmer run . -- --port 8000
 ```
 
 Open [http://localhost:8000](http://localhost:8000) with your browser to see the result.
