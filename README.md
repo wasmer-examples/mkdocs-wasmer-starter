@@ -1,45 +1,32 @@
+# MkDocs Static Site + Wasmer
 
-This is a [Mkdocs](https://www.mkdocs.org/) starter project that builds a static site based of Markdown files.
+This example shows how to build and serve a **MkDocs** documentation site on **Wasmer Edge**.
 
-## Getting Started
+## Demo
 
-First, install the dependencies:
+https://wasmer-edge-mkdocs-sample.wasmer.app/
+
+## How it Works
+
+MkDocs turns Markdown files into a static site:
+
+* `mkdocs.yml` configures the project title, navigation, and theme.
+* The `docs/` directory contains your Markdown content (`index.md`, etc.).
+* `mkdocs build` renders everything into the `site/` folder, which Wasmer Edge serves like any static site.
+
+Because the output is plain HTML/CSS/JS, deployments are fast and serverless.
+
+## Running Locally
 
 ```bash
 pip install mkdocs
-```
-
-You can also build the static site directly with:
-
-```bash
-mkdocs build
-```
-
-Which will create the static-site inside the `site` directory.
-
-Then you can serve the mkdocs locally with:
-
-```bash
 mkdocs serve
 ```
 
-You can also run the Mkdocs project easily using Wasmer (check out the [install guide](https://docs.wasmer.io/install)):
+Visit `http://127.0.0.1:8000/` to preview changes with live reload. To inspect the static output manually, run `mkdocs build` and browse the `site/` directory.
 
-```bash
-mkdocs build
-wasmer run . -- --port 8000
-```
+## Deploying to Wasmer (Overview)
 
-Open [http://localhost:8000](http://localhost:8000) with your browser to see the result.
-
-## Deploy on Wasmer Edge
-
-The easiest way to deploy your Mkdocs static site is to use the [Wasmer Edge](https://wasmer.io/products/edge).
-
-Live example: https://wasmer-edge-mkdocs-sample.wasmer.app/
-
-First, you'll need to run `mkdocs build`, and then, to deploy to Wasmer Edge:
-
-```bash
-wasmer deploy
-```
+1. Run `mkdocs build` to generate the `site/` folder.
+2. Point your deployment (e.g., `wasmer.toml`) at the `site/` directory as the publish root.
+3. Deploy to Wasmer Edge and browse `https://<your-subdomain>.wasmer.app/`.
